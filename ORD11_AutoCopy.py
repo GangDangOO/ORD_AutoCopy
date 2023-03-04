@@ -2,17 +2,13 @@ import os
 import clipboard
 
 user = os.path.expanduser('~')
-isDir = os.path.join(user, 'OneDrive', 'Documents', 'Warcraft III', 'CustomMapData', 'ORD11')
-if os.path.isdir(isDir):
-    dir = os.path.join(user, 'OneDrive', 'Documents', 'Warcraft III', 'CustomMapData', 'ORD11')
-else:
-    dir = os.path.join(user, 'Documents', 'Warcraft III', 'CustomMapData', 'ORD11')
-os.chdir(dir)
-print(os.getcwd())
+local_txt = open("ordLocal.txt", 'r')
+temp = local_txt.read()
+local = temp.split("\"")
+os.chdir(local[1])
 
 file_list = os.listdir()
 file_list.sort(key=os.path.getctime, reverse=True)
-print(file_list)
 file = open(file_list[0], 'r', encoding='UTF-8')
 
 i = 0;
