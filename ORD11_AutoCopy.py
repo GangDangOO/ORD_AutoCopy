@@ -2,8 +2,9 @@ import os
 import clipboard
 
 user = os.path.expanduser('~')
-local_txt = open("ordLocal.txt", 'r')
+local_txt = open("ordLocal.txt", 'r', encoding='UTF-8')
 temp = local_txt.read()
+local_txt.close()
 local = temp.split("\"")
 os.chdir(local[1])
 
@@ -13,13 +14,11 @@ file = open(file_list[0], 'r', encoding='UTF-8')
 
 i = 0;
 while True:
-    file.readline()
-    if i == 4:
+    temp = file.readline()
+    if temp.count("-load"):
         break
     i += 1
-    
-write = file.readline()
-s = write.split("\"")
+s = temp.split("\"")
 code = s[1]
 print(code)
 clipboard.copy(code)
